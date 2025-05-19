@@ -8,22 +8,22 @@ import { Providers } from "./providers";
 
 // Local Fonts
 const zentry = localFont({
-  src: "../public/fonts/zentry-regular.woff2",
+  src: "../../public/fonts/zentry-regular.woff2",
   variable: "--font-zentry",
 });
 
 const general = localFont({
-  src: "../public/fonts/general.woff2",
+  src: "../../public/fonts/general.woff2",
   variable: "--font-general",
 });
 
 const circular = localFont({
-  src: "../public/fonts/circularweb-book.woff2",
+  src: "../../public/fonts/circularweb-book.woff2",
   variable: "--font-circular-web",
 });
 
 const robert = localFont({
-  src: "../public/fonts/robert-regular.woff2",
+  src: "../../public/fonts/robert-regular.woff2",
   variable: "--font-robert-regular",
 });
 
