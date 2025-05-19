@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    /* Base Options */
+    "target": "es2022",                         /* Set the JavaScript language version for emitted JavaScript */
+    "lib": ["dom", "dom.iterable", "esnext"],   /* Specify library files to be included in the compilation */
+    "allowJs": true,                            /* Allow JavaScript files to be compiled */
+    "skipLibCheck": true,                       /* Skip type checking of all declaration files (*.d.ts) */
+    "esModuleInterop": true,                    /* Emit additional JavaScript to ease support for importing CommonJS modules */
+    "allowSyntheticDefaultImports": true,       /* Allow default imports from modules with no default export */
+    "strict": true,                             /* Enable all strict type-checking options */
+    "forceConsistentCasingInFileNames": true,   /* Ensure that casing is correct in imports */
+    "noEmit": true,                             /* Do not emit outputs */
+    "jsx": "preserve",                          /* Preserve JSX for Next.js */
+    
+    /* Module Resolution Options */
+    "module": "esnext",                         /* Specify module code generation */
+    "moduleResolution": "bundler",              /* Use bundler mode for module resolution */
+    "resolveJsonModule": true,                  /* Include modules imported with .json extension */
+    "isolatedModules": true,                    /* Transpile each file as a separate module */
+    
+    /* Advanced Options */
+    "incremental": true,                        /* Enable incremental compilation */
+    "verbatimModuleSyntax": true,               /* Use exact module syntax verbatim */
+    "noUncheckedIndexedAccess": true,           /* Add undefined to indexed access results when index may be out of bounds */
+    "noImplicitOverride": true,                 /* Ensure overriding members are marked with override */
+    "useDefineForClassFields": true,            /* Use define semantics for class fields */
+    
+    /* Path Mapping */
+    "baseUrl": ".",                             /* Base directory to resolve non-absolute module names */
+    "paths": {                                  /* Path mapping entries relative to baseUrl */
+      "@/*": ["./src/*"]
+    },
+    
+    /* Error Handling */
+    "noFallthroughCasesInSwitch": true,         /* Report errors for fallthrough cases in switch statement */
+    "noImplicitReturns": true,                  /* Report error when not all code paths in function return a value */
+    "noUnusedLocals": true,                     /* Report errors on unused locals */
+    "noUnusedParameters": true,                 /* Report errors on unused parameters */
+    
+    /* Plugins */
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
