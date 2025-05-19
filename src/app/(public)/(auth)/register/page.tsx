@@ -1,8 +1,8 @@
 "use client";
 
 import { signUp } from '@/lib/actions/auth';
-import AuthForm from '../../../components/AuthForm'
-import { signUpSchema } from '../../../lib/validations';
+import AuthForm from '../../../../components/AuthForm'
+import { signUpSchema } from '../../../../lib/validations';
 
 const Register = () => (
     <AuthForm 
