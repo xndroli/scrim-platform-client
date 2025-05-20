@@ -1,4 +1,4 @@
-import { getStoredUser } from "../../src/lib/auth";
+import { getStoredUser } from "@/lib/auth";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
@@ -34,7 +34,8 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   return (
     <main className="root-container">
       <div className="mx-auto max-w-7xl">
-        <Header session={session} />
+        {/* <Header session={session} /> */}
+        <Header />
         <div className="mt-20 pb-20">{children}</div>
       </div>
     </main>

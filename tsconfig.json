@@ -28,7 +28,7 @@
     /* Path Mapping */
     "baseUrl": ".",                             /* Base directory to resolve non-absolute module names */
     "paths": {                                  /* Path mapping entries relative to baseUrl */
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     },
     
     /* Error Handling */

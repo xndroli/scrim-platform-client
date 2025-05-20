@@ -1,10 +1,10 @@
-import Hero from "../../src/components/home/Hero";
-import About from "../../src/components/home/About";
-import Navbar from "../../src/components/Navbar";
-import Features from "../../src/components/home/Features";
-import Story from "../../src/components/home/Story";
-import Contact from "../../src/components/home/Contact";
-import Footer from "../../src/components/home/Footer";
+import Hero from "@/components/home/Hero";
+import About from "@/components/home/About";
+import Navbar from "@/components/Navbar";
+import Features from "@/components/home/Features";
+import Story from "@/components/home/Story";
+import Contact from "@/components/home/Contact";
+import Footer from "@/components/home/Footer";
 
 export default function Home() {
   return (

@@ -3,8 +3,8 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { Button } from '../../../../components/ui/button';
-import { Input } from '../../../../src/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import { 
   Table, 
   TableBody, 
@@ -12,12 +12,12 @@ import {
   TableHead, 
   TableHeader, 
   TableRow 
-} from '../../../../src/components/ui/table';
+} from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { LucideSearch, LucidePlus, LucideEdit, LucideTrash2 } from 'lucide-react';
-import api from '../../../../src/lib/api';
-import { formatDate } from '../../../../src/lib/utils';
-import type { User } from '../../../../types/auth';
+import api from '@/lib/api';
+import { formatDate } from '@/lib/utils';
+import type { User } from '@/types/auth';
 
 export default function AdminUsersPage() {
   const [searchQuery, setSearchQuery] = useState('');

@@ -1,11 +1,11 @@
 // src/app/(protected)/admin/page.tsx
 'use client';
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../../src/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
-import { Button } from '../../../src/components/ui/button';
-import api from '../../../src/lib/api';
+import { Button } from '@/components/ui/button';
+import api from '@/lib/api';
 import { LucideUsers, LucideUserPlus, LucideShield, LucideGamepad2 } from 'lucide-react';
 
 export default function AdminDashboardPage() {

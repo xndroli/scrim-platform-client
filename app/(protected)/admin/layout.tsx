@@ -2,7 +2,7 @@
 'use client';
 
 //import { AdminNavbar } from '../../../components/layout/admin-navbar';
-import { AdminSidebar } from '../../../src/components/layout/admin-sidebar';
+import { AdminSidebar } from '@/components/layout/admin-sidebar';
 //import { useAuth } from '../../../hooks/useAuth';
 //import { redirect } from 'next/navigation';
 
