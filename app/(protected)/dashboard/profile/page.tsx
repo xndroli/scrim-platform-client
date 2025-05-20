@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@/lib/auth/AuthContext';
+// import { useAuth } from '@/lib/auth/AuthContext';
 import React from 'react';
 import EventList from '@/components/EventList';
 
@@ -71,14 +71,14 @@ const sampleEvents = [
 ];
 
 const Page = () => {
-    const { logout } = useAuth();
+    // const { logout } = useAuth();
 
     return (
         <>
             <form action={async () => {
-                'use server';
+                // 'use server';
 
-                await logout();
+                // await logout();
                 }}
                 className="mb-10"
             >
