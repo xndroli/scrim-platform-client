@@ -2,7 +2,15 @@ import React from 'react'
 import Button from '../Button';
 import Image from 'next/image';
 
-const ImageClipBox = ({ src, alt, clipClass, width, height }) => (
+interface ImageClipBoxProps {
+    src: string;
+    alt: string;
+    clipClass: string;
+    width: number;
+    height: number;
+}
+
+const ImageClipBox = ({ src, alt, clipClass, width, height }: ImageClipBoxProps) => (
     <div className={clipClass}>
         <Image src={src} alt={alt} width={width} height={height} />
     </div>

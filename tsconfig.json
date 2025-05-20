@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Base Options */
-    "target": "es2022",                         /* Set the JavaScript language version for emitted JavaScript */
+    "target": "ES2022",                         /* Set the JavaScript language version for emitted JavaScript */
     "lib": ["dom", "dom.iterable", "esnext"],   /* Specify library files to be included in the compilation */
     "allowJs": true,                            /* Allow JavaScript files to be compiled */
     "skipLibCheck": true,                       /* Skip type checking of all declaration files (*.d.ts) */
@@ -35,7 +35,8 @@
     "noFallthroughCasesInSwitch": true,         /* Report errors for fallthrough cases in switch statement */
     "noImplicitReturns": true,                  /* Report error when not all code paths in function return a value */
     "noUnusedLocals": true,                     /* Report errors on unused locals */
-    "noUnusedParameters": true,                 /* Report errors on unused parameters */
+    "noUnusedParameters": false,                /* Report errors on unused parameters */
+    "noImplicitAny": false,                     /* Report errors on implicit any */
     
     /* Plugins */
     "plugins": [

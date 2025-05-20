@@ -3,7 +3,19 @@
 import { useRef, useState } from "react";
 import { TiLocationArrow } from "react-icons/ti";
 
-export const BentoTilt = ({ children, className = ''}) => {
+interface BentoTiltProps {
+  children: React.ReactNode;
+  className?: string;
+};
+
+interface BentoCardProps {
+  src: string;
+  title: any;
+  description: string;
+  isComingSoon: boolean;
+};
+
+export const BentoTilt = ({ children, className = ''}: BentoTiltProps) => {
     const [transformStyle, setTransformStyle] = useState('');
     const itemRef = useRef<HTMLInputElement | null>(null);
 
@@ -33,7 +45,7 @@ export const BentoTilt = ({ children, className = ''}) => {
     );
 };
 
-export const BentoCard = ({ src, title, description, isComingSoon }) => {
+export const BentoCard = ({ src, title, description, isComingSoon }: BentoCardProps) => {
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
     const [hoverOpacity, setHoverOpacity] = useState(0);
     const hoverButtonRef = useRef<HTMLInputElement | null>(null);
