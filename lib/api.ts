@@ -1,5 +1,6 @@
 // lib/api.ts
 import axios from 'axios';
+// import { useAuthStore } from '../stores/authStore';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api';
 
@@ -12,24 +13,30 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// // Add a request interceptor to include token
+// // Add request interceptor to add token
 // api.interceptors.request.use(
 //   (config) => {
-//     // Get token from local storage
-//     const token = typeof window !== 'undefined' 
-//       ? localStorage.getItem('token') 
-//       : null;
+//     // Get token from store
+//     const token = useAuthStore.getState().token;
     
 //     if (token) {
-//       config.headers['Authorization'] = `Bearer ${token}`;
+//       config.headers.Authorization = `Bearer ${token}`;
 //     }
     
 //     return config;
 //   },
-//   (error) => {
-//     return Promise.reject(error);
-//   }
+//   (error) => Promise.reject(error)
 // );
+
+// Add request interceptor to log headers
+api.interceptors.request.use(
+  (config) => {
+    console.log('Request headers:', config.headers);
+    console.log('Request includes credentials:', config.withCredentials);
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
 // // Add a response interceptor to handle auth errors
 // api.interceptors.response.use(
