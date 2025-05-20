@@ -1,14 +1,14 @@
-import { ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import Image from 'next/image';
-import { auth } from '@/auth';
-import { redirect } from 'next/navigation';
+// import { auth } from '@/auth';
+// import { redirect } from 'next/navigation';
 
 const Layout = async ({ children }: { children: ReactNode }) => {
     // Look for active user session
-    const session = await auth();
+    // const session = await auth();
 
     // If user is logged in, redirect to home page
-    if (session) redirect("/");
+    // if (session) redirect("/");
 
     return (
         <main className="auth-container">
