@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+// import { Button } from '@/components/ui/button';
 // import { useAuth } from '@/lib/auth/AuthContext';
 import React from 'react';
 import EventList from '@/components/EventList';
@@ -75,7 +75,7 @@ const Page = () => {
 
     return (
         <>
-            <form action={async () => {
+            {/* <form action={async () => {
                 // 'use server';
 
                 // await logout();
@@ -83,7 +83,7 @@ const Page = () => {
                 className="mb-10"
             >
                 <Button>Logout</Button>
-            </form>
+            </form> */}
 
             <EventList title="Enrolled Events" events={sampleEvents as any[]} />
         </>
