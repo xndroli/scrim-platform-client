@@ -2,32 +2,24 @@
 
 import { 
   Trophy, 
-  Users, 
-  Filter, 
   ArrowUp, 
   ArrowDown, 
   Search, 
   Medal,
-  BarChart3,
   Calendar,
   Gamepad2,
-  Info,
-  ChevronDown,
   Award,
   Swords
 } from 'lucide-react';
 
 import { useState, useEffect } from 'react';
 import gsap from 'gsap';
-import { useTheme } from 'next-themes';
 import type { LucideIcon } from 'lucide-react';
-import type { Session } from 'next-auth';
 import clsx from 'clsx';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { useSession } from 'next-auth/react';
 
 // TypeScript interfaces
 interface Game {
@@ -112,8 +104,6 @@ const generatePlayers = (count: number): Player[] => {
 const players: Player[] = generatePlayers(50);
 
 export default function LeaderboardsPage() {
-  const { theme } = useTheme();
-  const { data: session } = useSession();
   const [selectedGame, setSelectedGame] = useState<string>('all');
   const [selectedTimePeriod, setSelectedTimePeriod] = useState<string>('all');
   const [selectedType, setSelectedType] = useState<string>('overall');
@@ -436,19 +426,18 @@ export default function LeaderboardsPage() {
         </Card>
         
         {/* Player Location Section */}
-        {session && (
           <div className="mt-8 p-6 bg-gradient-to-r from-violet-950 to-indigo-900 rounded-lg">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="flex items-center gap-4 mb-4 md:mb-0">
                 <Avatar className="h-14 w-14 ring-2 ring-violet-500/50">
-                  <AvatarImage src={session?.user?.image || ''} alt="Profile" />
+                  <AvatarImage src={''} alt="Profile" />
                   <AvatarFallback className="bg-violet-950 text-violet-200 text-xl">
-                    {session?.user?.name?.charAt(0) || 'G'}
+                    {'G'}
                   </AvatarFallback>
                 </Avatar>
                 
                 <div>
-                  <h3 className="text-xl font-semibold text-white">{session?.user?.name || 'Your'} Position</h3>
+                  <h3 className="text-xl font-semibold text-white">{'Your'} Position</h3>
                   <p className="text-zinc-300">Keep competing to improve your ranking!</p>
                 </div>
               </div>
@@ -465,7 +454,6 @@ export default function LeaderboardsPage() {
               </div>
             </div>
           </div>
-        )}
       </div>
     </div>
   );

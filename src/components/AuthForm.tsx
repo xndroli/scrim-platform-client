@@ -1,14 +1,14 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { 
+import type { 
     DefaultValues, 
     SubmitHandler, 
-    useForm, 
     UseFormReturn, 
     FieldValues, 
     Path
 } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ZodType } from "zod";
 import { Button } from "./ui/button"
 import {
@@ -21,10 +21,23 @@ import {
 } from "./ui/form"
 import { Input } from "./ui/input"
 import Link from "next/link";
-import { FIELD_NAMES, FIELD_TYPES } from "../constants";
 // import ImageUpload from "@/components/ImageUpload";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+
+export const FIELD_NAMES = {
+    fullName: "Full name",
+    email: "Email",
+    teamId: "Team ID Number",
+    password: "Password",
+};
+
+export const FIELD_TYPES = {
+    fullName: "text",
+    email: "email",
+    teamId: "number",
+    password: "password",
+};
 
 interface Props<T extends FieldValues> {
     schema: ZodType<T>;
