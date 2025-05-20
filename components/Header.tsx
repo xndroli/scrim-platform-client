@@ -4,7 +4,7 @@ import Image from "next/image";
 // import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
 // import { Session } from "next-auth";
-import { getInitials } from "@/lib/utils";
+// import { getInitials } from "@/lib/utils";
 
 // const Header = ({ session }: { session: Session}) => {
 const Header = () => {
