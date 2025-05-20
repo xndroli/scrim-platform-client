@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "../styles/globals.css";
-import { Toaster } from "../components/ui/sonner";
+import { Toaster } from "../src/components/ui/sonner";
 
 //import localFont from "next/font/local";
 import type { ReactNode } from "react";

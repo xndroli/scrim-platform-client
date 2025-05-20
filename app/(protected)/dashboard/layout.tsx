@@ -1,9 +1,9 @@
 // src/app/(protected)/dashboard/layout.tsx
 'use client';
 
-import { DashboardNavbar } from '../../../components/layout/dashboard-navbar';
-import { Sidebar } from '../../../components/layout/sidebar';
-import { useAuth } from '../../../hooks/useAuth';
+import { DashboardNavbar } from '../../../src/components/layout/dashboard-navbar';
+import { Sidebar } from '../../../src/components/layout/sidebar';
+import { useAuth } from '../../../src/hooks/useAuth';
 
 export default function DashboardLayout({
   children,
