@@ -2,8 +2,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { eventsApi } from '../../../lib/api/events';
-import { useAuth } from '../../../lib/auth/AuthContext';
+//import { eventsApi } from '../../../lib/api/events';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { 
@@ -53,7 +52,6 @@ const mockedActivity = [
 ];
 
 const UserDashboardPage = () => {
-  const { user } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
 
   // Animation setup using GSAP
@@ -114,7 +112,7 @@ const UserDashboardPage = () => {
         {/* Welcome Section */}
         <div className="dashboard-welcome mb-8">
           <h1 className="text-3xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-violet-500 to-fuchsia-500">
-            Welcome back, {session?.user?.name?.split(' ')[0] || 'Gamer'}
+            Welcome back, {'Gamer'}
           </h1>
           <p className="text-zinc-400 mt-2">Your gaming headquarters. Ready to dominate today?</p>
         </div>
@@ -130,9 +128,9 @@ const UserDashboardPage = () => {
               
               <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                 <Avatar className="h-20 w-20 ring-2 ring-violet-500/50">
-                  <AvatarImage src={session?.user?.image || ''} alt="Profile" />
+                  <AvatarImage src={''} alt="Profile" />
                   <AvatarFallback className="bg-violet-950 text-violet-200 text-xl">
-                    {session?.user?.name?.charAt(0) || 'G'}
+                    {'G'}
                   </AvatarFallback>
                 </Avatar>
                 

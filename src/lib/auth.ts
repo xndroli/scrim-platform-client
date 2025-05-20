@@ -1,4 +1,4 @@
-import { User } from '../types/auth';
+import type { User } from '../types/auth';
 
 // Get user from localStorage
 export const getStoredUser = (): User | null => {

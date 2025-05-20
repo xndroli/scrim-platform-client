@@ -3,9 +3,9 @@
 
 import { createContext, useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { User, RegisterData } from '../../types/auth';
+import type { User, RegisterData } from '../../types/auth';
 import { getStoredUser, setStoredUser, removeStoredUser } from '../auth';
-import { api } from '../api';
+import api from '../api';
 
 type AuthContextType = {
   user: User | null;
