@@ -4,7 +4,7 @@ import localFont from 'next/font/local';
 export const zentry = localFont({
   src: [
     {
-      path: '../public/fonts/zentry-regular.woff2',
+      path: '../../public/fonts/zentry-regular.woff2',
     }
   ],
   variable: '--font-zentry',
@@ -13,7 +13,7 @@ export const zentry = localFont({
 export const general = localFont({
   src: [
     {
-      path: '../public/fonts/general.woff2',
+      path: '../../public/fonts/general.woff2',
     }
   ],
   variable: '--font-general',
@@ -22,7 +22,7 @@ export const general = localFont({
 export const circular = localFont({
   src: [
     {
-      path: '../public/fonts/circularweb-book.woff2',
+      path: '../../public/fonts/circularweb-book.woff2',
     }
   ],
   variable: '--font-circular-web',
@@ -31,7 +31,7 @@ export const circular = localFont({
 export const robert = localFont({
   src: [
     {
-      path: '../public/fonts/robert-regular.woff2',
+      path: '../../public/fonts/robert-regular.woff2',
     }
   ],
   variable: '--font-robert-regular',
