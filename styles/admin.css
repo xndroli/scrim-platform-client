@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+@components admin-container {
+    @apply flex w-[calc(100%-264px)] flex-1 flex-col bg-[#F8F8FF] p-5 sm:p-10;
+}
+
+@components back-btn {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply mb-10 w-fit border border-[#F8F8FF] bg-white text-xs font-medium text-[#3A354E] hover:bg-[#F8F8FF];
+}
+
+/* Confirmation Dialog */
+@components confirm-trigger {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply font-semibold text-sm shadow-none hover:bg-gray-50/75 w-full;
+}
+
+@components confirm-approve {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply bg-green-100 text-green-800 hover:bg-green-100/70;
+}
+
+@components confirm-reject {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply bg-red-100 text-red-800 hover:bg-red-100/70;
+}
+
+@components confirm-content {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply sm:max-w-md flex flex-col items-center justify-center p-6;
+}
+
+@components confirm-illustration {
+    @apply size-28 rounded-full flex justify-center items-center mx-auto;
+}
+
+@components confirm-illustration div:first-child {
+    @apply size-[70%] rounded-full flex justify-center items-center;
+}
+
+@components confirm-btn {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply w-full min-h-14 rounded-xl font-bold text-base text-[#F8FAFC];
+}
+
+/* Book Form */
+@components book-form_input {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply min-h-14 border border-[#CBD5E1] bg-[#F9FAFB] p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500;
+}
+
+@components book-form_btn {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply min-h-14 w-full bg-[#25388C] hover:bg-[#25388C]/95;
+}
+
+/* Home Page */
+@components view-btn {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply bg-[#F8F8FF] rounded-md text-[#25388C] font-semibold hover:bg-[#F8F8FF]/80 shadow-none;
+}
+
+@components add-new-book_btn {
+    @apply mt-7 mb-3 bg-[#F8F8FF] py-4 px-3 flex flex-row items-center rounded-xl gap-4;
+}
+
+@components add-new-book_btn div:first-child {
+    @apply size-12 bg-white rounded-full flex justify-center items-center;
+}
+
+@components add-new-book_btn p:first-child {
+    @apply font-semibold text-lg text-[1E293B];
+}
+
+/* Statistics */
+@components stat {
+    @apply bg-white rounded-xl p-5 space-y-5 flex-1;
+}
+
+@components stat-info {
+    @apply flex justify-between items-center gap-5;
+}
+
+@components stat-label {
+    @apply font-medium text-base text-[#8D8D8D] whitespace-nowrap;
+}
+
+@components stat-count {
+    @apply font-semibold text-3xl text-[1E293B];
+}
+
+/* Book Stripe */
+@components book-stripe {
+    @apply flex flex-row gap-4 bg-[#F8F8FF] p-4 rounded-lg;
+}
+
+@components book-stripe title {
+    @apply font-semibold text-base text-[1E293B] line-clamp-1;
+}
+
+@components book-stripe author {
+    @apply flex flex-wrap flex-row items-center gap-2;
+}
+
+@components book-stripe author p:first-child {
+    @apply text-[#8D8D8D] text-sm line-clamp-1;
+}
+
+@components book-stripe author div {
+    @apply size-1 rounded-full bg-[#8D8D8D];
+}
+
+@components book-stripe author p:last-child {
+    @apply text-[#8D8D8D] text-sm;
+}
+
+@components book-stripe user {
+    @apply mt-2.5 flex flex-row flex-wrap gap-5;
+}
+
+@components book-stripe user avatar {
+    @apply flex flex-row items-center gap-1.5;
+}
+
+@components book-stripe user avatar p {
+    @apply text-xs text-[#3A354E];
+}
+
+@components book-stripe borrow-date {
+    @apply flex flex-row items-center gap-1.5;
+}
+
+@components book-stripe borrow-date p {
+    @apply text-xs text-[#3A354E];
+}
+
+/* Color Picker */
+@components color-picker {
+    @apply flex min-h-14 flex-row items-center gap-3 rounded-md border border-[#CBD5E1] bg-[#F9FAFB] p-4 text-base font-semibold text-[1E293B];
+}
+
+@components hex-input {
+    @apply h-full flex-1 bg-transparent font-normal outline-none;
+}
+
+@components hex-color-picker {
+    @apply absolute left-0 top-full z-50 mt-3;
+}
+
+/* Error Fallback */
+@components error-fallback {
+    @apply p-4 bg-red-100 text-red-700 rounded-md;
+}
+
+@components error-fallback h2 {
+    @apply text-lg font-semibold mb-2;
+}
+
+/* Header */
+@components admin-header {
+    @apply flex lg:items-end items-start justify-between lg:flex-row flex-col gap-5 sm:mb-10 mb-5;
+}
+
+/* Search */
+@components admin-search {
+    @apply flex border border-[#CBD5E1] min-h-14 items-center gap-1 rounded-md bg-[#F9FAFB] px-4 lg:max-w-md w-full;
+}
+
+@components admin-search_input {
+    /* eslint-disable-next-line scss/css-ruleorselectorexpected */
+    @apply w-full border-0 shadow-none bg-transparent outline-none focus:outline-none focus:ring-0 focus:border-0;
+}
+
+/* Sidebar */
+@components admin-sidebar {
+    @apply sticky left-0 top-0 flex h-dvh flex-col justify-between bg-white px-5 pb-5 pt-10;
+}
+
+@components admin-sidebar logo {
+    @apply flex flex-row items-center gap-2 border-b border-dashed border-[#25388C]/20 pb-10 max-md:justify-center;
+}
+
+@components admin-sidebar logo h1 {
+    @apply text-2xl font-semibold text-[#25388C] max-md:hidden;
+}
+
+@components admin-sidebar link {
+    @apply flex flex-row items-center w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center;
+}
+
+@components admin-sidebar .link p {
+    @apply text-base font-medium max-md:hidden;
+}
+
+@components admin-sidebar .user {
+    @apply my-8 flex w-full flex-row gap-2 rounded-full border border-[#EDF1F1] px-6 py-2 shadow-sm max-md:px-2;
+}
+
+/* User Card */
+@components user-card {
+    @apply w-40 bg-[#F8F8FF] py-4 px-3 flex justify-center items-center flex-col rounded-xl text-center;
+}
+
+@components user-card name {
+    @apply font-medium mt-3 text-[1E293B] line-clamp-1 w-full break-words;
+}
+
+@components user-card email {
+    @apply text-[#8D8D8D] text-sm line-clamp-1 break-words w-full;
+}
