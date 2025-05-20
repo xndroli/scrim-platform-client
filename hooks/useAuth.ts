@@ -1,5 +1,4 @@
 // hooks/useAuth.ts
-import { useState } from 'react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useAuthStore } from '../stores/authStore';
 import api from '../lib/api';
@@ -9,7 +8,6 @@ import { useRouter } from 'next/navigation';
 export const useAuth = () => {
   const router = useRouter();
   const { token, user, isAuthenticated, setAuth, clearAuth, isTokenValid } = useAuthStore();
-  const [loading, setLoading] = useState(false);
   
   // Login mutation
   const loginMutation = useMutation({
@@ -59,12 +57,23 @@ export const useAuth = () => {
     toast.success('Logged out successfully');
     router.push('/login');
   };
+
+  // Use React Query's loading states directly
+  const isLoading = loginMutation.isPending || registerMutation.isPending;
+  
+  // Expose error state from mutations
+  const error = loginMutation.error || registerMutation.error;
+  const errorMessage = error instanceof Error 
+    ? error.message 
+    : (error as any)?.response?.data?.message || null;
   
   return {
     token,
     user: profile || user,
     isAuthenticated: isAuthenticated && isTokenValid(),
-    loading,
+    isLoading,
+    error,
+    errorMessage,
     login: loginMutation.mutate,
     register: registerMutation.mutate,
     logout,
