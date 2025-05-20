@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner";
 
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
@@ -50,7 +49,6 @@ const RootLayout = async ({
         >
           <Providers>
             {children}
-            <Toaster richColors position="bottom-right" />
           </Providers>
         </body>
     </html>
