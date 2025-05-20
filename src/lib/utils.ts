@@ -32,3 +32,9 @@ export function generateAvatarFallback(name: string) {
     .toUpperCase()
     .substring(0, 2);
 }
+
+export const getInitials = (name: string): string => name
+  .split(" ")
+  .map((word) => word.charAt(0).toUpperCase())
+  .join("")
+  .slice(0, 2);

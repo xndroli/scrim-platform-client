@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import { attendTournament } from "@/lib/actions/event";
+// import { attendTournament } from "@/lib/actions/event";
 
 interface Props {
     userId: string;
@@ -17,11 +17,11 @@ interface Props {
 }
 
 const AttendEvent = ({
-    userId,
-    tournamentId,
+    //userId,
+    //tournamentId,
     attendingEligibility: { isEligible, message },
 }: Props) => {
-    const router = useRouter();
+    // const router = useRouter();
     const [attending, setAttending] = useState(false);
 
     const handleAttendEvent = async () => {
@@ -33,27 +33,27 @@ const AttendEvent = ({
 
         setAttending(true);
 
-        try {
-        const result = await attendTournament({ tournamentId, userId, teamId: "" });
+        // try {
+        // const result = await attendTournament({ tournamentId, userId, teamId: "" });
 
-        if (result.success) {
-            toast("Success", {
-                description: "Book borrowed successfully",
-            });
+        // if (result.success) {
+        //     toast("Success", {
+        //         description: "Book borrowed successfully",
+        //     });
 
-            router.push("/");
-        } else {
-            toast.error("Error", {
-                description: message,
-            });
-        }
-        } catch (error) {
-        toast("Error", { 
-            description: "An error occurred while borrowing the book",
-        });
-        } finally {
-        setAttending(false);
-        }
+        //     router.push("/");
+        // } else {
+        //     toast.error("Error", {
+        //         description: message,
+        //     });
+        // }
+        // } catch (error) {
+        // toast("Error", { 
+        //     description: "An error occurred while borrowing the book",
+        // });
+        // } finally {
+        // setAttending(false);
+        // }
     };
 
     return (

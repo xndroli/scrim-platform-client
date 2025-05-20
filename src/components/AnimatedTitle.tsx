@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 
 gsap.registerPlugin(ScrollTrigger);
 
-const AnimatedTitle = ({ title, containerClass }) => {
+const AnimatedTitle = ({ title, containerClass }: { title: string; containerClass: string }) => {
     const containerRef = useRef(null);
 
     useEffect(() => {

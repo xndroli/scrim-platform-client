@@ -1,4 +1,12 @@
-const Button = ({ id, title, rightIcon, leftIcon, containerClass }) => {
+interface ButtonProps {
+  id: string;
+  title: string;
+  rightIcon?: React.ReactNode;
+  leftIcon?: React.ReactNode;
+  containerClass?: string; // Add a type annotation for containerClass
+}
+
+const Button = ({ id, title, rightIcon, leftIcon, containerClass }: ButtonProps) => {
     return (
         <button id={id} className={`group relative z-10 w-fit cursor-pointer overflow-hidden rounded-full bg-violet-50 px-7 py-3 text-black ${containerClass}`}>
             {leftIcon}

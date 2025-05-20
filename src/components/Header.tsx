@@ -1,12 +1,13 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import Link from "next/link";
 import Image from "next/image";
-import { signOut } from "@/auth";
+// import { signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
-import { Session } from "next-auth";
+// import { Session } from "next-auth";
 import { getInitials } from "@/lib/utils";
 
-const Header = ({ session }: { session: Session}) => {
+// const Header = ({ session }: { session: Session}) => {
+const Header = () => {
     return (
         <header className="my-10 flex justify-between gap-5">
             <Link href="/">
@@ -16,11 +17,11 @@ const Header = ({ session }: { session: Session}) => {
             <ul className="flex flex-row items-center gap-8">
                 <li>
                 <form
-                    action={async () => {
-                        "use server";
+                    // action={async () => {
+                    //     "use server";
 
-                        await signOut();
-                    }}
+                    //     await signOut();
+                    // }}
                     className="mb-10"
                 >
                     <Button>Logout</Button>
@@ -31,7 +32,8 @@ const Header = ({ session }: { session: Session}) => {
                     <Link href="/profile">
                         <Avatar>
                             <AvatarFallback className="bg-amber-100">
-                                {getInitials(session?.user?.name || "RN")}
+                                {/* {getInitials(session?.user?.name || "RN")} */}
+                                {"RN"}
                             </AvatarFallback>
                         </Avatar>
                     </Link>
