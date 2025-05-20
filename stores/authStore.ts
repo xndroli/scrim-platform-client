@@ -1,8 +1,10 @@
 // src/stores/authStore.ts
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import { jwtDecode } from 'jwt-decode';
 import type { User } from '@/types/auth';
+import { cookieStorage } from '@/lib/cookieStorage';
+
 
 interface AuthState {
   token: string | null;
@@ -67,7 +69,7 @@ export const useAuthStore = create<AuthState>()(
           const expiresInFiveMinutes = decoded.exp - currentTime < 300; // 5 minutes in seconds
           if (expiresInFiveMinutes) {
             console.warn('Token will expire soon, consider refreshing');
-            // You could trigger a token refresh here if your API supports it
+            // Could trigger a token refresh here as long as API supports it
           }
           
           return true;
@@ -78,7 +80,8 @@ export const useAuthStore = create<AuthState>()(
     }),
     {
       name: 'auth-storage',
-      partialize: (state) => ({ token: state.token, user: state.user }),
+      storage: createJSONStorage(() => cookieStorage),
+      partialize: (state) => ({ token: state.token }),
     }
   )
 );
