@@ -17,6 +17,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { LucideSearch, LucidePlus, LucideEdit, LucideTrash2 } from 'lucide-react';
 import api from '../../../../lib/api';
 import { formatDate } from '../../../../lib/utils';
+import type { User } from '../../../../types/auth';
 
 export default function AdminUsersPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -74,7 +75,7 @@ export default function AdminUsersPage() {
                 </TableCell>
               </TableRow>
             ) : users?.length ? (
-              users.map((user) => (
+              users.map((user: User) => (
                 <TableRow key={user.id}>
                   <TableCell>
                     <div className="flex items-center gap-3">
@@ -95,7 +96,8 @@ export default function AdminUsersPage() {
                       Active
                     </span>
                   </TableCell>
-                  <TableCell>{user.role || 'User'}</TableCell>
+                  {/* <TableCell>{user.role || 'User'}</TableCell> */}
+                  <TableCell>{user.username || 'User'}</TableCell>
                   <TableCell>{formatDate(user.createdAt)}</TableCell>
                   <TableCell className="text-right">
                     <Button variant="ghost" size="icon">

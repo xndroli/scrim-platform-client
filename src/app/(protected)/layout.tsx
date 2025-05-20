@@ -1,37 +1,34 @@
-import { auth } from "@/auth";
+import { getStoredUser } from "../../lib/auth";
 import Header from "@/components/Header";
-import { db } from "@/database/drizzle";
-import { users } from "@/database/schema";
-import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 import { after } from "next/server";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   // Look for active user session
-  const session = await auth();
+  const session = await getStoredUser();
 
   // If user is not logged in, redirect to sign-in page
   if (!session) redirect("/login");
 
   after(async () => {
-    if (!session?.user?.id) return;
+    if (!session?.id) return;
 
     // Get the user and see if last activity date is today
-    const user = await db
-      .select()
-      .from(users)
-      .where(eq(users.user_id, session?.user?.id))
-      .limit(1);
+    // const user = await db
+    //   .select()
+    //   .from(users)
+    //   .where(eq(users.user_id, session?.user?.id))
+    //   .limit(1);
 
     // If last activity date is today, return (do not perform update)
-    if (user[0].lastActivityDate === new Date().toISOString().slice(0, 10))
-      return;
+    // if (user[0].lastActivityDate === new Date().toISOString().slice(0, 10))
+    //   return;
 
-    await db
-      .update(users)
-      .set({ lastActivityDate: new Date().toISOString().slice(0, 10) })
-      .where(eq(users.user_id, session?.user?.id));
+  //   await db
+  //     .update(users)
+  //     .set({ lastActivityDate: new Date().toISOString().slice(0, 10) })
+  //     .where(eq(users.user_id, session?.user?.id));
   });
 
   return (

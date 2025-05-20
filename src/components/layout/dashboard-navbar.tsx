@@ -5,15 +5,16 @@ import { Button } from '../../components/ui/button';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { 
   LucideLogOut, 
-  LucideUser, 
+  //LucideUser, 
   LucideUsers, 
   LucideGamepad2, 
   LucideLayoutDashboard, 
-  LucideShieldAlert 
+  //LucideShieldAlert 
 } from 'lucide-react';
 
 export function DashboardNavbar({ user }: { user: any }) {
-  const { logout, isAdmin } = useAuth();
+  //const { logout, isAdmin } = useAuth();
+  const { logout } = useAuth();
   
   return (
     <header className="border-b">
@@ -38,12 +39,12 @@ export function DashboardNavbar({ user }: { user: any }) {
             <span>Scrims</span>
           </Link>
           
-          {isAdmin && (
+          {/* {isAdmin && (
             <Link href="/admin" className="flex items-center gap-2 text-sm font-medium text-primary">
               <LucideShieldAlert className="h-4 w-4" />
               <span>Admin</span>
             </Link>
-          )}
+          )} */}
           
           <div className="flex items-center gap-4">
             <Link href="/dashboard/profile" className="flex items-center gap-2">
