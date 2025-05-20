@@ -12,40 +12,40 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Add a request interceptor to include token
-api.interceptors.request.use(
-  (config) => {
-    // Get token from local storage
-    const token = typeof window !== 'undefined' 
-      ? localStorage.getItem('token') 
-      : null;
+// // Add a request interceptor to include token
+// api.interceptors.request.use(
+//   (config) => {
+//     // Get token from local storage
+//     const token = typeof window !== 'undefined' 
+//       ? localStorage.getItem('token') 
+//       : null;
     
-    if (token) {
-      config.headers['Authorization'] = `Bearer ${token}`;
-    }
+//     if (token) {
+//       config.headers['Authorization'] = `Bearer ${token}`;
+//     }
     
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
+//     return config;
+//   },
+//   (error) => {
+//     return Promise.reject(error);
+//   }
+// );
 
-// Add a response interceptor to handle auth errors
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    // Handle 401 Unauthorized errors
-    if (error.response?.status === 401) {
-      // Clear token and redirect to login if on client side
-      if (typeof window !== 'undefined') {
-        localStorage.removeItem('token');
-        window.location.href = '/login';
-      }
-    }
+// // Add a response interceptor to handle auth errors
+// api.interceptors.response.use(
+//   (response) => response,
+//   async (error) => {
+//     // Handle 401 Unauthorized errors
+//     if (error.response?.status === 401) {
+//       // Clear token and redirect to login if on client side
+//       if (typeof window !== 'undefined') {
+//         localStorage.removeItem('token');
+//         window.location.href = '/login';
+//       }
+//     }
     
-    return Promise.reject(error);
-  }
-);
+//     return Promise.reject(error);
+//   }
+// );
 
 export default api;
