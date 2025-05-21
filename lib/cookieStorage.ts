@@ -5,6 +5,14 @@ import type { StateStorage } from 'zustand/middleware';
 const AUTH_TOKEN_COOKIE = 'auth-token';
 const COOKIE_EXPIRY_DAYS = 7;
 
+// Cookie configuration for cross-domain use
+const COOKIE_OPTIONS = {
+  expires: COOKIE_EXPIRY_DAYS,
+  path: '/',
+  sameSite: 'none' as const,
+  secure: true, // Required when sameSite is 'none'
+};
+
 export const cookieStorage: StateStorage = {
   getItem: (name: string): string | null => {
     if (typeof window === 'undefined') return null;
@@ -24,14 +32,7 @@ export const cookieStorage: StateStorage = {
       
       if (parsed.token) {
         // Set the cookie with the exact name the server expects
-        Cookies.set(AUTH_TOKEN_COOKIE, parsed.token, { 
-          expires: COOKIE_EXPIRY_DAYS, 
-          path: '/',
-          // Allow cookies to be sent in cross-site requests
-          sameSite: 'lax',
-          secure: window.location.protocol === 'https:' // Only use secure in HTTPS
-        });
-
+        Cookies.set(AUTH_TOKEN_COOKIE, parsed.token, COOKIE_OPTIONS); 
         console.log(`Cookie '${AUTH_TOKEN_COOKIE}' set successfully:`, parsed.token.substring(0, 10) + '...');
       } else {
         Cookies.remove(AUTH_TOKEN_COOKIE, { path: '/' });
