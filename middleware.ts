@@ -7,20 +7,26 @@ export function middleware(request: NextRequest) {
   
   // Get token from cookies
   const token = request.cookies.get('auth-token')?.value;
+  const isAuthenticated = !!token;
   
   // Protected routes (dashboard, admin)
   if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
     // If no token, redirect to login
-    if (!token) {
-      return NextResponse.redirect(new URL('/login', request.url));
+    if (!isAuthenticated) {
+      const loginUrl = new URL('/login', request.url);
+      // Add the original URL as a parameter for redirection after login
+      loginUrl.searchParams.set('callbackUrl', encodeURIComponent(request.url));
+      return NextResponse.redirect(loginUrl);
     }
-    
-    // Admin routes require additional checks (done on client side)
-    // We just do basic auth check here
   }
   
   // Redirect authenticated users from login/register to dashboard
-  if ((pathname === '/login' || pathname === '/register') && token) {
+  if ((pathname.startsWith('/login') || pathname.startsWith('/register')) && isAuthenticated) {
+    // Check if there's a callback URL to redirect to after login
+    const callbackUrl = request.nextUrl.searchParams.get('callbackUrl');
+    if (callbackUrl) {
+      return NextResponse.redirect(new URL(decodeURIComponent(callbackUrl)));
+    }
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
   

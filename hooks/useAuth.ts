@@ -64,7 +64,16 @@ export const useAuth = () => {
       setAuth(data.data.token, data.data.user);
       toast.success('Logged in successfully');
       queryClient.invalidateQueries({ queryKey: ['profile'] });
-      router.push('/dashboard');
+      
+      // Check if there's a callback URL in the query params
+      const url = new URL(window.location.href);
+      const callbackUrl = url.searchParams.get('callbackUrl');
+      
+      if (callbackUrl) {
+        router.push(decodeURIComponent(callbackUrl));
+      } else {
+        router.push('/dashboard');
+      }
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.message || 'Login failed');
