@@ -8,7 +8,7 @@ type RequestOptions = {
   cache?: RequestCache;
 };
 
-export async function apiClient(endpoint: string, options: RequestOptions = {}) {
+export async function apiClient(endpoint: string, options: RequestOptions = {}, token?: string) {
   const { method = 'GET', body, headers = {}, cache } = options;
   
   const requestHeaders: HeadersInit = {
@@ -16,12 +16,9 @@ export async function apiClient(endpoint: string, options: RequestOptions = {}) 
     ...headers,
   };
   
-  // Get token from localStorage on client side
-  if (typeof window !== 'undefined') {
-    const token = localStorage.getItem('auth-token');
-    if (token) {
-      requestHeaders['Authorization'] = `Bearer ${token}`;
-    }
+  // Use provided token (from Clerk) if available
+  if (token) {
+    requestHeaders['Authorization'] = `Bearer ${token}`;
   }
   
   const config: RequestInit = {

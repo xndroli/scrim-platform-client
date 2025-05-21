@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { useQuery } from '@tanstack/react-query';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import api from '@/lib/api';
+import api from '@/lib/useApi';
 import { LucideUsers, LucideUserPlus, LucideShield, LucideGamepad2 } from 'lucide-react';
 
 export default function AdminDashboardPage() {

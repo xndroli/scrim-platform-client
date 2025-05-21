@@ -1,10 +1,7 @@
 // src/components/layout/dashboard-navbar.tsx
 import Link from 'next/link';
-import { useAuth } from '../../hooks/useAuth';
-import { Button } from '../../components/ui/button';
-import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
+import { UserButton, useUser } from '@clerk/nextjs';
 import { 
-  LucideLogOut, 
   //LucideUser, 
   LucideUsers, 
   LucideGamepad2, 
@@ -12,9 +9,8 @@ import {
   //LucideShieldAlert 
 } from 'lucide-react';
 
-export function DashboardNavbar({ user }: { user: any }) {
-  //const { logout, isAdmin } = useAuth();
-  const { logout } = useAuth();
+export function DashboardNavbar() {
+  const { user } = useUser();
   
   return (
     <header className="border-b">
@@ -47,19 +43,11 @@ export function DashboardNavbar({ user }: { user: any }) {
           )} */}
           
           <div className="flex items-center gap-4">
-            <Link href="/dashboard/profile" className="flex items-center gap-2">
-              <Avatar className="h-8 w-8 rounded-full border">
-                <AvatarImage src={user?.profileImage || ''} alt={user?.username || ''} />
-                <AvatarFallback className="bg-muted">
-                  {user?.username?.substring(0, 2).toUpperCase() || 'U'}
-                </AvatarFallback>
-              </Avatar>
-              <span className="text-sm font-medium">{user?.username}</span>
-            </Link>
+            {user && (
+              <span className="text-sm font-medium">{user.username || user.firstName}</span>
+            )}
             
-            <Button variant="ghost" size="icon" onClick={logout}>
-              <LucideLogOut className="h-5 w-5" />
-            </Button>
+            <UserButton />
           </div>
         </nav>
       </div>
