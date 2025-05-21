@@ -35,7 +35,7 @@ export const cookieStorage: StateStorage = {
         Cookies.set(AUTH_TOKEN_COOKIE, parsed.token, COOKIE_OPTIONS); 
         console.log(`Cookie '${AUTH_TOKEN_COOKIE}' set successfully:`, parsed.token.substring(0, 10) + '...');
       } else {
-        Cookies.remove(AUTH_TOKEN_COOKIE, { path: '/' });
+        Cookies.remove(AUTH_TOKEN_COOKIE, COOKIE_OPTIONS);
         console.log(`Cookie '${AUTH_TOKEN_COOKIE}' removed due to null token`);
       }
     } catch (error) {
@@ -45,7 +45,7 @@ export const cookieStorage: StateStorage = {
   
   removeItem: (name: string): void => {
     if (typeof window === 'undefined') return;
-    Cookies.remove(AUTH_TOKEN_COOKIE, { path: '/' });
+    Cookies.remove(AUTH_TOKEN_COOKIE, COOKIE_OPTIONS);
     console.log(`Cookie '${AUTH_TOKEN_COOKIE}' removed`);
   }
 };

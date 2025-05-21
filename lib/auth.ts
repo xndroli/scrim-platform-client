@@ -39,8 +39,9 @@ export const setStoredUser = (user: User, token: string): void => {
 export const removeStoredUser = (): void => {
   if (typeof window === 'undefined') return;
   
-  Cookies.remove(AUTH_TOKEN_COOKIE, { path: '/' });
-  Cookies.remove(USER_COOKIE, { path: '/' });
+  // Must use the same options when removing cross-domain cookies
+  Cookies.remove(AUTH_TOKEN_COOKIE, COOKIE_OPTIONS);
+  Cookies.remove(USER_COOKIE, COOKIE_OPTIONS);
   
   console.log(`Auth token cookie removed: ${AUTH_TOKEN_COOKIE}`);
   console.log(`User data cookie removed: ${USER_COOKIE}`);
