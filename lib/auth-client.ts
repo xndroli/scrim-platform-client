@@ -17,8 +17,8 @@ export const {
   signUp,
   signOut,
   useSession,
-  user,
-  session,
+  // user,
+  // session,
   twoFactor,
   admin
 } = authClient
