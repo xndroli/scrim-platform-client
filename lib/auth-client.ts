@@ -1,4 +1,4 @@
-import { createAuthClient } from "better-auth/react";
+import { createAuthClient } from "better-auth/client";
 import { twoFactorClient } from "better-auth/client/plugins"
 import { adminClient } from "better-auth/client/plugins"
 import config from "./config";
