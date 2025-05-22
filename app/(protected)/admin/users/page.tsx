@@ -15,7 +15,6 @@ import {
 } from '@/components/ui/table';
 import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { LucideSearch, LucidePlus, LucideEdit, LucideTrash2 } from 'lucide-react';
-import api from '@/lib/useApi';
 import { formatDate } from '@/lib/utils';
 import type { User } from '@/types/auth';
 
