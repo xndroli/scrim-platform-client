@@ -1,10 +1,9 @@
 // app/(protected)/profile/page.tsx
-import { UserProfile } from "@clerk/nextjs";
 
 export default function ProfilePage() {
   return (
     <div className="flex justify-center py-8">
-      <UserProfile 
+      {/* <UserProfile 
         appearance={{
           elements: {
             card: "shadow-lg bg-card",
@@ -12,7 +11,7 @@ export default function ProfilePage() {
             footerAction: "text-primary hover:underline",
           }
         }} 
-      />
+      /> */}
     </div>
   );
 }
