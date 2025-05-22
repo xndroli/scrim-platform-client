@@ -16,5 +16,10 @@ const { data, error  } = await authClient.signUp.email({
         onError: (ctx) => {
             // display the error message
             alert(ctx.error.message);
+            console.log(error);
         },
 });
+
+if (data) {
+    console.log(error);
+};
