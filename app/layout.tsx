@@ -1,14 +1,12 @@
+'use client';
+
 import type { Metadata } from "next";
 import "./globals.css";
 
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
-import { Providers } from "./providers";
-
-// import { zentry } from '@/lib/fonts';
-// import { general } from '@/lib/fonts';
-// import { circular } from '@/lib/fonts';
-// import { robert } from '@/lib/fonts';
+import { AuthProvider } from '../components/auth/auth-provider'
+import { Toaster } from "sonner";
 
 //Local Fonts
 const zentry = localFont({
@@ -33,25 +31,26 @@ const robert = localFont({
 
 export const metadata: Metadata = {
   title: "Raijin Ascendancy E-Sports",
-  description: "The Unified Play Layer Bridging Gaming, AI, and Blockchain | Raijin",
+  description: "The Unified Play Layer Bridging Gaming E-Sports | Raijin",
 };
 
 const RootLayout = async ({
   children,
 }: {
   children: ReactNode;
-}) =>{
+}) => {
 
   return (
-    <html lang="en" suppressHydrationWarning>
-        <body
-          className={`${zentry.variable} ${general.variable} ${circular.variable} ${robert.variable} antialiased`}
-        >
-          <Providers>
-            {children}
-          </Providers>
-        </body>
-    </html>
+    <AuthProvider>
+      <html lang="en" suppressHydrationWarning>
+          <body
+            className={`${zentry.variable} ${general.variable} ${circular.variable} ${robert.variable} antialiased`}
+          >
+              {children}
+              <Toaster richColors position="top-right" />
+          </body>
+      </html>
+    </AuthProvider>
   );
 };
 
