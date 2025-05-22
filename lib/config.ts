@@ -1,7 +1,9 @@
-const config = {
+// lib/config.ts (client-side)
+const clientConfig = {
     env: {
         apiEndpoint: process.env.NEXT_PUBLIC_API_ENDPOINT!,
-        prodApiEndpoint: process.env.NEXT_PUBLIC_PROD_API_ENDPOINT!, // Only accessible in production
+        prodApiEndpoint: process.env.NEXT_PUBLIC_PROD_API_ENDPOINT!,
+        discordClientId: process.env.NEXT_PUBLIC_DISCORD_CLIENT_ID!,
         imagekit: {
             publicKey: process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY!,
             urlEndpoint: process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT!,
@@ -18,4 +20,4 @@ const config = {
     },
 };
 
-export default config;
+export default clientConfig;
