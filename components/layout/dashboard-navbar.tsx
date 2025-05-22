@@ -1,6 +1,5 @@
 // src/components/layout/dashboard-navbar.tsx
-import Link from 'next/link';
-import { UserButton, useUser } from '@clerk/nextjs';
+import Link from 'next/link';;
 import { 
   //LucideUser, 
   LucideUsers, 
@@ -10,7 +9,6 @@ import {
 } from 'lucide-react';
 
 export function DashboardNavbar() {
-  const { user } = useUser();
   
   return (
     <header className="border-b">
@@ -43,11 +41,11 @@ export function DashboardNavbar() {
           )} */}
           
           <div className="flex items-center gap-4">
-            {user && (
+            {/* {user && (
               <span className="text-sm font-medium">{user.username || user.firstName}</span>
             )}
             
-            <UserButton />
+            <UserButton /> */}
           </div>
         </nav>
       </div>
