@@ -5,9 +5,7 @@ import { adminClient } from "better-auth/client/plugins"
 export const authClient = createAuthClient({
     /** The base URL of the server (optional if you're using the same domain) */
     // Use the full API URL for Better-auth endpoints
-    baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT 
-      ? `${process.env.NEXT_PUBLIC_API_ENDPOINT}/auth`
-      : "http://localhost:3001/api/auth",
+    baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3000/api',
     plugins: [
         twoFactorClient(),
         adminClient()
@@ -23,4 +21,5 @@ export const {
   // session,
   twoFactor,
   admin
-} = authClient
+} = authClient;
+
