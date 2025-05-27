@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
+import { authClient } from "@/lib/auth-client";
  
 export async function middleware(request: NextRequest) {
-    const session = await auth.api.getSession({
-        headers: await headers()
-    })
+    const session = await authClient.getSession();
  
     if(!session) {
         return NextResponse.redirect(new URL("/sign-in", request.url));

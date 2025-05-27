@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           console.error("Auth check failed:", session.error);
           setUser(null);
         } else {
-          setUser(session.user || null);
+          setUser(session?.user || null);
         }
       } catch (error) {
         console.error("Auth check failed:", error);
