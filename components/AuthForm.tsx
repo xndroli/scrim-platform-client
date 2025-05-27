@@ -1,3 +1,4 @@
+// components/AuthForm.tsx
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -21,9 +22,9 @@ import {
 } from "./ui/form"
 import { Input } from "./ui/input"
 import Link from "next/link";
-// import ImageUpload from "@/components/ImageUpload";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { signIn, signUp } from "@/lib/auth-client";
 
 export const FIELD_NAMES = {
     fullName: "Full name",
@@ -61,23 +62,53 @@ const AuthForm = <T extends FieldValues>({
         defaultValues: defaultValues as DefaultValues<T>,
     });
 
-    // Form submit handler
-    const handleSubmit: SubmitHandler<T> = async(data) =>{
-        const result = await onSubmit(data);
+    // Form submit handler - Updated to use Better-auth client
+    const handleSubmit: SubmitHandler<T> = async(data) => {
+        try {
+            if (isSignIn) {
+                // Use Better-auth signIn
+                const result = await signIn.email({
+                    email: (data as any).email,
+                    password: (data as any).password,
+                    callbackURL: "/dashboard"
+                });
 
-        if (result.success) {
-            toast.success( "Success", {
-                description: isSignIn 
-                    ? "You have successfully signed in"
-                    : "You have successfully signed up",
-            });
+                if (result.error) {
+                    toast.error("Sign in failed", {
+                        description: result.error.message || "Invalid credentials",
+                    });
+                } else {
+                    toast.success("Success", {
+                        description: "You have successfully signed in",
+                    });
+                    router.push("/dashboard");
+                }
+            } else {
+                // Use Better-auth signUp
+                const result = await signUp.email({
+                    email: (data as any).email,
+                    password: (data as any).password,
+                    name: (data as any).fullName,
+                    callbackURL: "/dashboard"
+                });
 
-            router.push("/dashboard");
-        } else {
-            toast.error(`Error ${isSignIn ? "signing in" : "signing up"}`, {
-                description: result.error ?? "An error occurred.",
+                if (result.error) {
+                    toast.error("Sign up failed", {
+                        description: result.error.message || "Failed to create account",
+                    });
+                } else {
+                    toast.success("Success", {
+                        description: "Account created successfully! Please check your email to verify your account.",
+                    });
+                    router.push("/login");
+                }
+            }
+        } catch (error: any) {
+            console.error('Auth error:', error);
+            toast.error("Error", {
+                description: error.message || "An unexpected error occurred",
             });
-        };
+        }
     };
 
     return ( 
@@ -121,8 +152,15 @@ const AuthForm = <T extends FieldValues>({
                             )}
                         />
                     ))}
-                    <Button type="submit" className="form-btn">
-                        {isSignIn ? "Sign in" : "Sign up"}
+                    <Button 
+                        type="submit" 
+                        className="form-btn"
+                        disabled={form.formState.isSubmitting}
+                    >
+                        {form.formState.isSubmitting 
+                            ? (isSignIn ? "Signing in..." : "Creating account...") 
+                            : (isSignIn ? "Sign in" : "Sign up")
+                        }
                     </Button>
                 </form>
             </Form>

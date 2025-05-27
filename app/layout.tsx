@@ -39,16 +39,18 @@ const RootLayout = async ({
 }) => {
 
   return (
-    <AuthProvider>
+    
       <html lang="en" suppressHydrationWarning>
           <body
             className={`${zentry.variable} ${general.variable} ${circular.variable} ${robert.variable} antialiased`}
           >
+            <AuthProvider>
               {children}
               <Toaster richColors position="top-right" />
+            </AuthProvider>
           </body>
       </html>
-    </AuthProvider>
+
   );
 };
 

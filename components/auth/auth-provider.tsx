@@ -1,25 +1,70 @@
 // components/auth/auth-provider.tsx - Better-auth provider
-'use client'
+"use client";
 
-import type { ReactNode } from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { useState } from 'react'
+import { createContext, useContext, useEffect, useState } from "react";
+import { authClient } from "@/lib/auth-client";
 
-export function AuthProvider({ children }: { children: ReactNode }) {
-  const [queryClient] = useState(() => 
-    new QueryClient({
-      defaultOptions: {
-        queries: {
-          staleTime: 60 * 1000, // 1 minute
-          retry: 1,
-        },
-      },
-    })
-  )
-  
+interface User {
+  id: string;
+  email: string;
+  name: string;
+  image?: string;
+}
+
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  signIn: typeof authClient.signIn;
+  signUp: typeof authClient.signUp;
+  signOut: typeof authClient.signOut;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const session = await authClient.getSession();
+        if ('error' in session) {
+          console.error("Auth check failed:", session.error);
+          setUser(null);
+        } else {
+          setUser(session.user || null);
+        }
+      } catch (error) {
+        console.error("Auth check failed:", error);
+        setUser(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   return (
-    <QueryClientProvider client={queryClient}>
+    <AuthContext.Provider
+      value={{
+        user,
+        loading,
+        signIn: authClient.signIn,
+        signUp: authClient.signUp,
+        signOut: authClient.signOut,
+      }}
+    >
       {children}
-    </QueryClientProvider>
-  )
+    </AuthContext.Provider>
+  );
+}
+
+export function useAuth() {
+  const context = useContext(AuthContext);
+  if (context === undefined) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }
