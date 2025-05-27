@@ -1,17 +1,37 @@
 // middleware.ts - Updated for Better-auth
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
+import { NextResponse, NextRequest } from 'next/server'
 import { authClient } from './lib/auth-client'
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
-  // Get session from Better-auth
-  const session = await authClient.getSession({
-    headers: request.headers as HeadersInit,
-  })
+  // Get session by checking cookies
+  const sessionToken = request.cookies.get('better-auth.session_token')?.value;
+
+  // For debugging
+  console.log('Middleware check:', pathname, 'Token exists:', !!sessionToken);
   
-  const isAuthenticated = !!session.data?.user
+  // Check if user is authenticated by making a request to your auth endpoint
+  let isAuthenticated = false;
+  let userRole = null;
+
+  if (sessionToken) {
+    try {
+      const authResponse = await fetch(`${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/auth/get-session`, {
+        headers: {
+          cookie: `better-auth.session_token=${sessionToken}`,
+        },
+      });
+      
+      if (authResponse.ok) {
+        const authData = await authResponse.json();
+        isAuthenticated = !!authData.user;
+        userRole = authData.user?.role;
+      }
+    } catch (error) {
+      console.error('Auth check failed:', error);
+    }
+  }
   
   // Protected routes (dashboard, admin)
   if (pathname.startsWith('/dashboard') || pathname.startsWith('/admin')) {
@@ -22,26 +42,21 @@ export async function middleware(request: NextRequest) {
     }
     
     // Admin routes require admin role
-    if (pathname.startsWith('/admin') && session.data?.user?.role !== 'admin') {
-      return NextResponse.redirect(new URL('/dashboard', request.url))
-    }
-    
-    // Check email verification for protected routes
-    if (!session.data?.user?.emailVerified) {
-      return NextResponse.redirect(new URL('/verify-email-required', request.url))
+    if (pathname.startsWith('/admin') && userRole !== 'admin') {
+      return NextResponse.redirect(new URL('/dashboard', request.url));
     }
   }
   
   // Redirect authenticated users from auth pages to dashboard
   if ((pathname.startsWith('/login') || pathname.startsWith('/register')) && isAuthenticated) {
-    const callbackUrl = request.nextUrl.searchParams.get('callbackUrl')
+    const callbackUrl = request.nextUrl.searchParams.get('callbackUrl');
     if (callbackUrl) {
-      return NextResponse.redirect(new URL(decodeURIComponent(callbackUrl)))
+      return NextResponse.redirect(new URL(decodeURIComponent(callbackUrl)));
     }
-    return NextResponse.redirect(new URL('/dashboard', request.url))
+    return NextResponse.redirect(new URL('/dashboard', request.url));
   }
   
-  return NextResponse.next()
+  return NextResponse.next();
 }
 
 export const config = {
