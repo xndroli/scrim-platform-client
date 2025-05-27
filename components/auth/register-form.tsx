@@ -25,7 +25,7 @@ const registerSchema = z.object({
   path: ['confirmPassword'],
 })
 
-export type RegisterFormValues = z.infer<typeof registerSchema>
+type RegisterFormValues = z.infer<typeof registerSchema>
 
 export function RegisterForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -43,13 +43,14 @@ export function RegisterForm() {
         email: data.email,
         password: data.password,
         name: data.name,
+        callbackURL: '/dashboard'
       })
       
       if (result.error) {
         toast.error(result.error.message || 'Registration failed')
       } else {
         toast.success('Account created! Please check your email to verify your account.')
-        router.push('/dashboard')
+        router.push('/login')
       }
     } catch (error) {
       toast.error('An unexpected error occurred')

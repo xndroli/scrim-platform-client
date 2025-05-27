@@ -1,16 +1,15 @@
 import { createAuthClient } from "better-auth/client";
-// import { twoFactorClient } from "better-auth/client/plugins"
-// import { adminClient } from "better-auth/client/plugins"
+import { twoFactorClient } from "better-auth/client/plugins"
+import { adminClient } from "better-auth/client/plugins"
 
 export const authClient = createAuthClient({
-    baseURL: process.env.NODE_ENV === "production" 
-    ? process.env.NEXT_PUBLIC_API_ENDPOINT!
-    : "http://localhost:3001",
-    credentials: 'include',
+    /** The base URL of the server (optional if you're using the same domain) */
+    // Use the full API URL for Better-auth endpoints
+    baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3000/api',
     plugins: [
-        // twoFactorClient(),
-        // adminClient()
-    ],
+        twoFactorClient(),
+        adminClient()
+    ]
 });
 
 export const {
@@ -18,5 +17,9 @@ export const {
   signUp,
   signOut,
   useSession,
-  getSession,
+  // user,
+  // session,
+  twoFactor,
+  admin
 } = authClient;
+
