@@ -8,6 +8,9 @@ export const authClient = createAuthClient({
     baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3001',
     fetchOptions: {
       credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
     },
     plugins: [
         // twoFactorClient(),

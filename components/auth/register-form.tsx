@@ -38,13 +38,13 @@ export function RegisterForm() {
   const onSubmit = async (data: RegisterFormValues) => {
     setIsLoading(true)
     
-    try {
-      console.log('🚀 Attempting registration with:', { 
-        email: data.email, 
-        name: data.name,
-        baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3001'
-      });
+    console.log('🚀 Attempting registration with:', { 
+      email: data.email, 
+      name: data.name,
+      baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3001'
+    });
 
+    try {
       const result = await authClient.signUp.email({
         email: data.email,
         password: data.password,
@@ -64,7 +64,7 @@ export function RegisterForm() {
       }
     } catch (error: any) {
       console.error('❌ Registration exception:', error);
-      toast.error(`Registration failed: ${error.message || 'Unknown error'}`)
+      toast.error(`An unexpected error occurred: ${error.message || 'Unknown error'}`)
     } finally {
       setIsLoading(false)
     }
