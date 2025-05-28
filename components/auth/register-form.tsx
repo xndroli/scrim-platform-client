@@ -1,11 +1,11 @@
 // components/auth/register-form.tsx
-'use client'
+'use server'
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { authClient} from '../../lib/auth-client'
+import { authClient } from '../../lib/auth-client'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { useRouter } from 'next/navigation'
@@ -49,7 +49,13 @@ export function RegisterForm() {
         email: data.email,
         password: data.password,
         name: data.name,
-        callbackURL: '/dashboard'
+      }, {
+        onSuccess: (data) => {
+          console.log('📤 Registration success:', data);
+        },
+        onError: (error) => {
+          console.error('❌ Registration error:', error);
+        }
       })
 
       console.log('📤 Registration result:', result);
