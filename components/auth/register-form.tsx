@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { signUp } from '../../lib/auth-client'
+import { authClient} from '../../lib/auth-client'
 import { Button } from '../ui/button'
 import { Input } from '../ui/input'
 import { useRouter } from 'next/navigation'
@@ -39,21 +39,32 @@ export function RegisterForm() {
     setIsLoading(true)
     
     try {
-      const result = await signUp.email({
+      console.log('🚀 Attempting registration with:', { 
+        email: data.email, 
+        name: data.name,
+        baseURL: process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3001'
+      });
+
+      const result = await authClient.signUp.email({
         email: data.email,
         password: data.password,
         name: data.name,
         callbackURL: '/dashboard'
       })
+
+      console.log('📤 Registration result:', result);
       
       if (result.error) {
+        console.error('❌ Registration error:', result.error);
         toast.error(result.error.message || 'Registration failed')
       } else {
+        console.log('✅ Registration successful:', result.data);
         toast.success('Account created! Please check your email to verify your account.')
         router.push('/login')
       }
-    } catch (error) {
-      toast.error('An unexpected error occurred')
+    } catch (error: any) {
+      console.error('❌ Registration exception:', error);
+      toast.error(`Registration failed: ${error.message || 'Unknown error'}`)
     } finally {
       setIsLoading(false)
     }
@@ -130,6 +141,13 @@ export function RegisterForm() {
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading ? 'Creating account...' : 'Create account'}
       </Button>
+
+      {/* Debug info in development */}
+      {process.env.NODE_ENV === 'development' && (
+        <div className="text-xs text-muted-foreground">
+          API Endpoint: {process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3001'}
+        </div>
+      )}
     </form>
   )
 }
