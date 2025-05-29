@@ -21,6 +21,10 @@ const Hero = () => {
     const totalVideos = 4;
     const nextVideoRef = useRef<HTMLVideoElement>(null);
 
+    const handleMainVideoLoad = () => {
+        setIsLoading(false);
+    };
+
     const handleVideoLoad = () => {
         setLoadedVideos ((prev) => prev + 1);
     };
@@ -33,7 +37,7 @@ const Hero = () => {
     const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
 
     useEffect(() => {
-        if (loadedVideos === totalVideos - 1) {
+        if (loadedVideos === totalVideos - 3) {
             setIsLoading(false);
         }
     }, [loadedVideos]);
@@ -138,7 +142,7 @@ const Hero = () => {
                         loop
                         muted
                         className="absolute left-0 top-0 size-full object-cover object-center"
-                        onLoadedData={handleVideoLoad}
+                        onLoadedData={handleMainVideoLoad}
                     />
                 </div>
 

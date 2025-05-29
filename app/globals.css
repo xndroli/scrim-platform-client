@@ -181,12 +181,15 @@ body {
 
 /* Auth */
 @utility auth-container {
-  @apply relative flex flex-col-reverse text-[#D6E0FF] sm:flex-row;
+  @apply relative flex flex-col-reverse text-[#D6E0FF] sm:flex-row h-screen w-screen;
 }
 
 @utility auth-form {
   @apply my-auto flex h-full min-h-screen flex-1 items-center bg-fixed bg-center bg-[#16191E] px-5 py-10;
-  background: url('/images/arena.jpg');
+  background: url('/images/gate.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
 @utility auth-box {
