@@ -1,4 +1,4 @@
-import { createAuthClient } from "better-auth/react";
+import { createAuthClient } from "better-auth/client";
 // import { twoFactorClient } from "better-auth/client/plugins"
 import { adminClient } from "better-auth/client/plugins"
 
@@ -10,9 +10,9 @@ export const authClient = createAuthClient({
     : 'http://localhost:3001',
     fetchOptions: {
       credentials: 'include',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      // headers: {
+      //   'Content-Type': 'application/json',
+      // },
     },
     plugins: [
         // twoFactorClient(),

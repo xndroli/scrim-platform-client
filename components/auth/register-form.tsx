@@ -1,5 +1,5 @@
 // components/auth/register-form.tsx
-'use server'
+'use client';
 
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -32,10 +32,19 @@ export function RegisterForm() {
   const router = useRouter()
   
   const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValues>({
+    // Initialize form with React Hook Form and Zod validation
     resolver: zodResolver(registerSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
   })
   
+  // Handle form submission
   const onSubmit = async (data: RegisterFormValues) => {
+    console.log(data);
     setIsLoading(true)
     
     console.log('🚀 Attempting registration with:', { 
@@ -50,8 +59,8 @@ export function RegisterForm() {
         password: data.password,
         name: data.name,
       }, {
-        onSuccess: (data) => {
-          console.log('📤 Registration success:', data);
+        onSuccess: (result) => {
+          console.log('📤 Registration success:', result.data);
         },
         onError: (error) => {
           console.error('❌ Registration error:', error);
@@ -62,7 +71,7 @@ export function RegisterForm() {
       
       if (result.error) {
         console.error('❌ Registration error:', result.error);
-        toast.error(result.error.message || 'Registration failed')
+        toast.error(result.error?.message || JSON.stringify(result.error) || 'Registration failed')
       } else {
         console.log('✅ Registration successful:', result.data);
         toast.success('Account created! Please check your email to verify your account.')
