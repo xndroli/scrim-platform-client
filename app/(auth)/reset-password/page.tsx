@@ -22,7 +22,7 @@ type ResetPasswordFormValues = z.infer<typeof resetPasswordSchema>
 
 export default function ResetPasswordPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-background px-4">
+    <div className="relative w-full max-w-md mx-auto z-30">
       <Suspense fallback={ <Loading /> }>
         <ResetPasswordForm />
       </Suspense>

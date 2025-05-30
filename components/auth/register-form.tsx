@@ -156,13 +156,6 @@ export function RegisterForm() {
       <Button type="submit" className="w-full" disabled={isLoading}>
         {isLoading ? 'Creating account...' : 'Create account'}
       </Button>
-
-      {/* Debug info in development */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="text-xs text-muted-foreground">
-          API Endpoint: {process.env.NEXT_PUBLIC_API_ENDPOINT || 'http://localhost:3001'}
-        </div>
-      )}
     </form>
   )
 }

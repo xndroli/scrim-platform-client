@@ -65,8 +65,8 @@ export default function ResetPasswordForm() {
   
   if (!token) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 to-background p-4">
-        <Card className="w-full max-w-md">
+      <div className="relative w-full max-w-md mx-auto z-30">
+        <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-center text-2xl font-bold">Invalid Reset Link</CardTitle>
             <CardDescription className="text-center">

@@ -48,8 +48,8 @@ export default function VerifyEmailPage() {
   
   if (isVerifying) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 to-background p-4">
-        <Card className="w-full max-w-md">
+      <div className="relative w-full max-w-md mx-auto z-30">
+        <Card>
           <CardHeader className="space-y-1">
             <CardTitle className="text-center text-2xl font-bold">Verifying Email</CardTitle>
             <CardDescription className="text-center">
@@ -63,49 +63,53 @@ export default function VerifyEmailPage() {
   
   if (!token) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 to-background p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader className="space-y-1">
-            <CardTitle className="text-center text-2xl font-bold">Invalid Verification Link</CardTitle>
-            <CardDescription className="text-center">
-              This email verification link is invalid or has expired
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="text-center text-sm">
-              <Link href="/login" className="text-primary hover:underline">
-                Back to login
-              </Link>
-            </div>
-          </CardContent>
-        </Card>
+      <div className="flex flex-col items-center justify-center w-full h-full">
+        <div className="relative w-full max-w-md mx-auto z-30">
+          <Card>
+            <CardHeader className="space-y-1">
+              <CardTitle className="text-center text-2xl font-bold">Invalid Verification Link</CardTitle>
+              <CardDescription className="text-center">
+                This email verification link is invalid or has expired
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="text-center text-sm">
+                <Link href="/login" className="text-primary hover:underline">
+                  Back to login
+                </Link>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
     )
   }
   
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 to-background p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-center text-2xl font-bold">
-            {isVerified ? 'Email Verified!' : 'Verification Failed'}
-          </CardTitle>
-          <CardDescription className="text-center">
-            {isVerified 
-              ? 'Your email has been successfully verified. You can now sign in to your account.'
-              : 'There was an error verifying your email address. Please try again or contact support.'
-            }
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <Button 
-            onClick={() => router.push('/login')}
-            className="w-full"
-          >
-            {isVerified ? 'Continue to Login' : 'Back to Login'}
-          </Button>
-        </CardContent>
-      </Card>
+    <div className="flex flex-col items-center justify-center w-full h-full">
+      <div className="flex min-h-screen items-center justify-center bg-gradient-to-b from-primary/5 to-background p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="space-y-1">
+            <CardTitle className="text-center text-2xl font-bold">
+              {isVerified ? 'Email Verified!' : 'Verification Failed'}
+            </CardTitle>
+            <CardDescription className="text-center">
+              {isVerified 
+                ? 'Your email has been successfully verified. You can now sign in to your account.'
+                : 'There was an error verifying your email address. Please try again or contact support.'
+              }
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <Button 
+              onClick={() => router.push('/login')}
+              className="w-full"
+            >
+              {isVerified ? 'Continue to Login' : 'Back to Login'}
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   )
 }

@@ -1,8 +1,10 @@
 // src/app/(protected)/admin/layout.tsx
 'use client';
 
+// import AdminSidebar from '@/components/admin/AdminSidebar';
+// import Header from '@/components/admin/Header';
+// import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 //import { AdminNavbar } from '../../../components/layout/admin-navbar';
-import { AdminSidebar } from '@/components/layout/admin-sidebar';
 //import { useAuth } from '../../../hooks/useAuth';
 //import { redirect } from 'next/navigation';
 
@@ -21,12 +23,24 @@ export default function AdminLayout({
   // }
   
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* <AdminNavbar user={user} /> */}
-      <div className="flex flex-1">
-        <AdminSidebar />
-        <main className="flex-1 p-6">{children}</main>
+    // <SidebarProvider>
+    <main>
+      <div>
+        {children}
       </div>
-    </div>
+    </main>
+    // <main className="flex min-h-screen w-full flex-row">
+    //   {/* Admin Sidebar */}
+    //   {/* <AdminSidebar /> */}
+    //   {/* <AdminNavbar user={user} /> */}
+
+    //   <div className="admin-container">
+    //     <main className="flex-1 p-6">
+    //       {/* <SidebarTrigger /> */}
+    //       {children}
+    //     </main>
+    //   </div>
+    // </main>
+    // </SidebarProvider>
   );
 }

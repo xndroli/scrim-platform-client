@@ -1,0 +1,138 @@
+// src/app/(protected)/admin/page.tsx
+'use client';
+
+// import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+// import { useQuery } from '@tanstack/react-query';
+// import Link from 'next/link';
+// import { Button } from '@/components/ui/button';
+// import { LucideUsers, LucideUserPlus, LucideShield, LucideGamepad2 } from 'lucide-react';
+import { AppSidebar } from "@/components/app-sidebar"
+import { ChartAreaInteractive } from "@/components/chart-area-interactive"
+import { DataTable } from "@/components/data-table"
+import { SectionCards } from "@/components/section-cards"
+import { SiteHeader } from "@/components/site-header"
+import {
+  SidebarInset,
+  SidebarProvider,
+} from "@/components/ui/sidebar"
+
+import data from "./data.json"
+
+export default function AdminDashboardPage() {
+  // Fetch admin statistics
+  // const { data: stats } = useQuery({
+  //   queryKey: ['admin-stats'],
+  //   queryFn: async () => {
+  //     const response = await api.get('/admin/stats');
+  //     return response.data.data;
+  //   },
+  // });
+
+
+  
+  return (
+    <SidebarProvider
+      style={
+        {
+          "--sidebar-width": "calc(var(--spacing) * 72)",
+          "--header-height": "calc(var(--spacing) * 12)",
+        } as React.CSSProperties
+      }
+    >
+      <AppSidebar variant="inset" />
+      <SidebarInset>
+        <SiteHeader />
+        <div className="flex flex-1 flex-col">
+          <div className="@container/main flex flex-1 flex-col gap-2">
+            <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
+              <SectionCards />
+              <div className="px-4 lg:px-6">
+                <ChartAreaInteractive />
+              </div>
+              <DataTable data={data} />
+            </div>
+          </div>
+        </div>
+      </SidebarInset>
+    </SidebarProvider>
+    // <div className="min-h-screen bg-muted/50 py-10 px-4 space-y-6">
+    //   <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 pt-4">
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between pb-2">
+    //         <CardTitle className="text-sm font-medium">Total Users</CardTitle>
+    //         <LucideUsers className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">{stats?.userCount || 0}</div>
+    //         <p className="text-xs text-muted-foreground">Registered users</p>
+    //       </CardContent>
+    //     </Card>
+        
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between pb-2">
+    //         <CardTitle className="text-sm font-medium">New Users</CardTitle>
+    //         <LucideUserPlus className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">{stats?.newUsers || 0}</div>
+    //         <p className="text-xs text-muted-foreground">Last 7 days</p>
+    //       </CardContent>
+    //     </Card>
+        
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between pb-2">
+    //         <CardTitle className="text-sm font-medium">Total Teams</CardTitle>
+    //         <LucideShield className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">{stats?.teamCount || 0}</div>
+    //         <p className="text-xs text-muted-foreground">Active teams</p>
+    //       </CardContent>
+    //     </Card>
+        
+    //     <Card>
+    //       <CardHeader className="flex flex-row items-center justify-between pb-2">
+    //         <CardTitle className="text-sm font-medium">Active Scrims</CardTitle>
+    //         <LucideGamepad2 className="h-4 w-4 text-muted-foreground" />
+    //       </CardHeader>
+    //       <CardContent>
+    //         <div className="text-2xl font-bold">{stats?.activeScrimCount || 0}</div>
+    //         <p className="text-xs text-muted-foreground">Scheduled scrims</p>
+    //       </CardContent>
+    //     </Card>
+    //   </div>
+      
+    //   <div className="grid gap-6 md:grid-cols-2">
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Recent Users</CardTitle>
+    //         <CardDescription>Newly registered users</CardDescription>
+    //       </CardHeader>
+    //       <CardContent>
+    //         {/* User list would go here */}
+    //         <div className="text-center">
+    //           <Link href="/admin/users">
+    //             <Button variant="outline" size="sm">View All Users</Button>
+    //           </Link>
+    //         </div>
+    //       </CardContent>
+    //     </Card>
+        
+    //     <Card>
+    //       <CardHeader>
+    //         <CardTitle>Recent Scrims</CardTitle>
+    //         <CardDescription>Recently created scrims</CardDescription>
+    //       </CardHeader>
+    //       <CardContent>
+    //         {/* Scrim list would go here */}
+    //         <div className="text-center">
+    //           <Link href="/admin/scrims">
+    //             <Button variant="outline" size="sm">View All Scrims</Button>
+    //           </Link>
+    //         </div>
+    //       </CardContent>
+    //     </Card>
+    //   </div>
+    // </div>
+  );
+}

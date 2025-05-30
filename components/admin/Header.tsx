@@ -6,16 +6,16 @@ const Header = () => {
     return (
         <header className="admin-header">
             <div>
-                <h2 className="text-2xl font-semibold text-dark-400">
+                <h1 className="text-3xl font-bold tracking-tight">
                     {/* {session?.user?.name} */}
-                    {"Raijin"}
-                </h2>
-                <p className="text-general text-slate-500">
-                    Monitor all of your users and scrims here
+                    Welcome, {"Raijin"}
+                </h1>
+                <p className=" text-general text-muted-foreground mt-1 text-lg">
+                    Monitor all of your platform activity here
                 </p>
             </div>
 
-            <p>Search</p>
+            {/* <p>Search</p> */}
         </header>
     );
 };
